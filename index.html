@@ -95,14 +95,15 @@ p{
 }
 
 button{
-    padding:12px 28px;
+    padding:12px 24px;
     border:none;
     border-radius:40px;
-    font-size:17px;
+    font-size:16px;
     font-weight:700;
     cursor:pointer;
-    margin:10px;
+    margin:0;
     transition:.3s;
+    white-space:nowrap;
 }
 
 button:hover{
@@ -112,17 +113,29 @@ button:hover{
 .next{
     background:#ff69b4;
     color:white;
+    margin-top:10px;
+}
+
+.button-container{
+    position:relative;
+    height:85px;
+    margin-top:18px;
 }
 
 .yes{
+    position:absolute;
+    left:20px;
+    top:0;
     background:#ff1493;
     color:white;
 }
 
 .no{
+    position:absolute;
+    right:20px;
+    top:0;
     background:#ff8fab;
     color:white;
-    position:absolute;
 }
 
 .hidden{
@@ -171,7 +184,7 @@ button:hover{
 
     #page2{
         background:rgba(255,255,255,0.28);
-        width:86%;
+        width:90%;
     }
 
     #page3{
@@ -194,15 +207,27 @@ button:hover{
     }
 
     button{
-        font-size:16px;
-        padding:11px 24px;
-        margin-top:8px;
+        font-size:14px;
+        padding:10px 16px;
+    }
+
+    .button-container{
+        height:82px;
+        margin-top:15px;
+    }
+
+    .yes{
+        left:5px;
+    }
+
+    .no{
+        right:5px;
     }
 }
 
 @media(max-width:390px){
     .card{
-        width:88%;
+        width:90%;
         padding:16px;
     }
 
@@ -212,6 +237,19 @@ button:hover{
 
     p{
         font-size:14px;
+    }
+
+    button{
+        font-size:13px;
+        padding:9px 13px;
+    }
+
+    .yes{
+        left:0;
+    }
+
+    .no{
+        right:0;
     }
 }
 </style>
@@ -253,15 +291,15 @@ button:hover{
             margin-top:10px;
         ">
             Out of 8 billion people,<br>
-            my heart chose you. ❤️
+            my heart chose you. ❤️<br><br>
             Will you choose me? 🥺💕
         </p>
 
-        <br>
+        <div class="button-container">
+            <button class="yes" onclick="showLove()">YES ❤️</button>
 
-        <button class="yes" onclick="showLove()">YES❤️</button>
-
-        <button class="no" id="noBtn">Let Me Think🤭</button>
+            <button class="no" id="noBtn">Let Me Think 🤭</button>
+        </div>
     </div>
 
     <div class="card hidden" id="page3">
@@ -318,6 +356,8 @@ function nextPage(){
     document.getElementById("page1").classList.add("hidden");
     document.getElementById("page2").classList.remove("hidden");
     document.getElementById("mainContainer").classList.add("top-question");
+
+    resetNoButton();
 }
 
 function showLove(){
@@ -331,17 +371,24 @@ function showLove(){
 
 const noBtn = document.getElementById("noBtn");
 
+function resetNoButton(){
+    noBtn.style.left = "";
+    noBtn.style.right = "20px";
+    noBtn.style.top = "0px";
+}
+
 function moveButton(event){
     event.preventDefault();
 
-    const card = document.getElementById("page2");
+    const area = document.querySelector(".button-container");
 
-    const maxX = card.clientWidth - noBtn.offsetWidth - 20;
-    const maxY = card.clientHeight - noBtn.offsetHeight - 20;
+    const maxX = area.clientWidth - noBtn.offsetWidth - 10;
+    const maxY = area.clientHeight - noBtn.offsetHeight - 10;
 
-    const x = Math.max(10, Math.random() * maxX);
-    const y = Math.max(10, Math.random() * maxY);
+    const x = Math.max(5, Math.random() * maxX);
+    const y = Math.max(5, Math.random() * maxY);
 
+    noBtn.style.right = "auto";
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
