@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    background:url('photo1.jpg') center center/cover no-repeat fixed;
+    transition:1s ease;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,182,193,0.18);
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    position:relative;
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    width:75%;
+    max-width:500px;
+    padding:28px;
+    border-radius:30px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.5);
+    box-shadow:0 8px 30px rgba(0,0,0,.12);
+}
+
+#page3{
+    max-width:430px;
+}
+
+h1{
+    color:#ff1493;
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+h2{
+    color:#ff69b4;
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+p{
+    color:#8b005d;
+    font-size:16px;
+    line-height:1.6;
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:40px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    margin:10px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.next{
+    background:#ff69b4;
+    color:white;
+}
+
+.yes{
+    background:#ff1493;
+    color:white;
+}
+
+.no{
+    background:#ff8fab;
+    color:white;
+    position:absolute;
+}
+
+.hidden{
+    display:none;
+}
+
+.heart{
+    position:absolute;
+    z-index:1;
+    opacity:.75;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh) rotate(0deg);
+    }
+    100%{
+        transform:translateY(-100px) rotate(360deg);
+    }
+}
+
+@media(max-width:768px){
+    .card{
+        width:90%;
+        padding:22px;
+    }
+
+    h1{
+        font-size:28px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    p{
+        font-size:15px;
+    }
+
+    button{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+    <div class="card" id="page1">
+        <h1>💖 Hey My Princess 💖</h1>
+
+        <p>
+            Before you continue, I want you to know that
+            you are the prettiest part of my life. 🌸💕
+        </p>
+
+        <br>
+
+        <p>
+            Every moment with you feels special.
+        </p>
+
+        <br>
+
+        <button class="next" onclick="nextPage()">Continue ❤️</button>
+    </div>
+
+    <div class="card hidden" id="page2">
+        <h2>🌷 One Small Question 🌷</h2>
+
+        <h1>Do You Love Me? 💖</h1>
+
+        <br>
+
+        <button class="yes" onclick="showLove()">YES ❤️</button>
+
+        <button class="no" id="noBtn">NO 😜</button>
+    </div>
+
+    <div class="card hidden" id="page3">
+        <h1>💖 I Knew It 💖</h1>
+
+        <p>
+            Thank you for being part of my life.
+        </p>
+
+        <br>
+
+        <p>
+            Your smile makes my bad days brighter,
+            your voice brings me peace,
+            and your love makes my life beautiful.
+        </p>
+
+        <br>
+
+        <p>
+            No matter how many years pass,
+            I will always choose you.
+            Again. And again. And again. ❤️
+        </p>
+
+        <br>
+
+        <h2 style="color:#ff1493;">
+            Mai Teri Ghiri, Tu Chuhara Mera ❤️
+        </h2>
+
+        <br>
+
+        <p>
+            Out of all the people in this world,
+            I am grateful that I found you. 💕
+        </p>
+
+        <br>
+
+        <h2>
+            Forever Yours,<br>
+            Ronaldo 🥰
+        </h2>
+    </div>
+
+</div>
+
+<script>
+function nextPage(){
+    document.body.style.backgroundImage = "url('photo2.jpg')";
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+}
+
+function showLove(){
+    document.body.style.backgroundImage = "url('photo3.jpg')";
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+}
+
+const noBtn = document.getElementById("noBtn");
+
+function moveButton(event){
+    event.preventDefault();
+
+    const card = document.getElementById("page2");
+
+    const maxX = card.clientWidth - noBtn.offsetWidth - 20;
+    const maxY = card.clientHeight - noBtn.offsetHeight - 20;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("click", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+for(let i=0;i<30;i++){
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "%";
+    heart.style.fontSize = (12 + Math.random()*20) + "px";
+    heart.style.animationDuration = (5 + Math.random()*5) + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
