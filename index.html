@@ -28,7 +28,7 @@ body{
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(255,182,193,0.06);
+    background:rgba(255,182,193,0.04);
 }
 
 .container{
@@ -43,9 +43,9 @@ body{
 
 .card{
     position:relative;
-    background:rgba(255,255,255,0.32);
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+    background:rgba(255,255,255,0.22);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
     width:90%;
     max-width:480px;
     padding:24px;
@@ -56,8 +56,10 @@ body{
 }
 
 #page2{
-    background:rgba(255,255,255,0.38);
-    max-width:460px;
+    background:rgba(255,255,255,0.28);
+    max-width:500px;
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 0 25px rgba(255,20,147,.15);
 }
 
 #page3{
@@ -74,14 +76,14 @@ h1{
     color:#ff1493;
     font-size:32px;
     margin-bottom:12px;
-    text-shadow:0 1px 2px rgba(255,255,255,0.5);
+    text-shadow:0 1px 2px rgba(255,255,255,0.7);
 }
 
 h2{
     color:#ff1493;
     font-size:23px;
     margin-bottom:12px;
-    text-shadow:0 1px 2px rgba(255,255,255,0.5);
+    text-shadow:0 1px 2px rgba(255,255,255,0.7);
 }
 
 p{
@@ -89,6 +91,7 @@ p{
     font-size:16px;
     line-height:1.5;
     font-weight:500;
+    text-shadow:0 1px 2px rgba(255,255,255,0.6);
 }
 
 button{
@@ -163,16 +166,17 @@ button:hover{
         width:86%;
         padding:18px;
         border-radius:24px;
-        background:rgba(255,255,255,0.30);
+        background:rgba(255,255,255,0.20);
     }
 
     #page2{
-        background:rgba(255,255,255,0.36);
-        width:84%;
+        background:rgba(255,255,255,0.28);
+        width:86%;
     }
 
     #page3{
-        background:rgba(255,255,255,0.46);
+        background:rgba(255,255,255,0.48);
+        width:88%;
     }
 
     h1{
@@ -239,15 +243,26 @@ button:hover{
     </div>
 
     <div class="card hidden" id="page2">
-        <h2>🌷 One Small Question 🌷</h2>
+        <h2>💌 Just One Last Question 💌</h2>
 
-        <h1>Do You Love Me? 💖</h1>
+        <p style="
+            font-size:20px;
+            font-weight:700;
+            color:#ff1493;
+            line-height:1.7;
+            margin-top:10px;
+        ">
+            Out of 8 billion people,<br>
+            my heart chose you. ❤️
+            <br><br>
+            Will you choose me too? 🥺💕
+        </p>
 
         <br>
 
-        <button class="yes" onclick="showLove()">YES ❤️</button>
+        <button class="yes" onclick="showLove()">YES, ALWAYS ❤️</button>
 
-        <button class="no" id="noBtn">NO 😜</button>
+        <button class="no" id="noBtn">Let Me Think 🤭</button>
     </div>
 
     <div class="card hidden" id="page3">
