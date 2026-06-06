@@ -12,64 +12,69 @@
     box-sizing:border-box;
 }
 
+html, body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
     font-family:'Segoe UI',sans-serif;
-    height:100vh;
+    min-height:100dvh;
     overflow:hidden;
-    background:url('photo1.jpg') center center/cover no-repeat fixed;
+    background:url('photo1.jpg') center top/cover no-repeat;
     transition:1s ease;
 }
 
 .overlay{
-    position:absolute;
+    position:fixed;
     inset:0;
-    background:rgba(255,182,193,0.18);
+    background:rgba(255,182,193,0.12);
 }
 
 .container{
     position:relative;
     z-index:2;
-    height:100vh;
+    min-height:100dvh;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
+    padding:12px;
 }
 
 .card{
     position:relative;
-    background:rgba(255,255,255,0.55);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    width:75%;
-    max-width:500px;
-    padding:28px;
-    border-radius:30px;
+    background:rgba(255,255,255,0.50);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    width:90%;
+    max-width:480px;
+    padding:24px;
+    border-radius:28px;
     text-align:center;
-    border:1px solid rgba(255,255,255,0.5);
-    box-shadow:0 8px 30px rgba(0,0,0,.12);
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 #page3{
-    max-width:430px;
+    max-width:440px;
 }
 
 h1{
     color:#ff1493;
-    font-size:34px;
-    margin-bottom:15px;
+    font-size:32px;
+    margin-bottom:12px;
 }
 
 h2{
-    color:#ff69b4;
-    font-size:24px;
-    margin-bottom:15px;
+    color:#ff1493;
+    font-size:23px;
+    margin-bottom:12px;
 }
 
 p{
     color:#8b005d;
     font-size:16px;
-    line-height:1.6;
+    line-height:1.5;
 }
 
 button{
@@ -112,37 +117,68 @@ button:hover{
     z-index:1;
     opacity:.75;
     animation:float 8s linear infinite;
+    pointer-events:none;
 }
 
 @keyframes float{
     0%{
-        transform:translateY(100vh) rotate(0deg);
+        transform:translateY(100dvh) rotate(0deg);
     }
     100%{
         transform:translateY(-100px) rotate(360deg);
     }
 }
 
-@media(max-width:768px){
+@media(max-width:600px){
+    body{
+        background-position:center top;
+        background-size:cover;
+    }
+
+    .container{
+        align-items:center;
+        padding:10px;
+    }
+
     .card{
-        width:90%;
-        padding:22px;
+        width:86%;
+        padding:18px;
+        border-radius:24px;
     }
 
     h1{
         font-size:28px;
+        margin-bottom:10px;
     }
 
     h2{
-        font-size:22px;
+        font-size:21px;
     }
 
     p{
         font-size:15px;
+        line-height:1.45;
     }
 
     button{
         font-size:16px;
+        padding:11px 24px;
+        margin-top:8px;
+    }
+}
+
+@media(max-width:390px){
+    .card{
+        width:88%;
+        padding:16px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+    p{
+        font-size:14px;
     }
 }
 </style>
@@ -189,43 +225,43 @@ button:hover{
         <h1>💖 I Knew It 💖</h1>
 
         <p>
-            Thank you for being part of my life.
+            Thank you for being part of my life. ❤️
         </p>
 
         <br>
 
         <p>
-            Your smile makes my bad days brighter,
-            your voice brings me peace,
+            Your smile makes my bad days brighter, your voice brings me peace,
             and your love makes my life beautiful.
         </p>
 
         <br>
 
         <p>
-            No matter how many years pass,
-            I will always choose you.
-            Again. And again. And again. ❤️
+            No matter how many years pass, I will always choose you.<br>
+            Again.<br>
+            And again.<br>
+            And again. 💕
         </p>
 
         <br>
 
-        <h2 style="color:#ff1493;">
+        <h2>
             Mai Teri Ghiri, Tu Chuhara Mera ❤️
         </h2>
 
         <br>
 
         <p>
-            Out of all the people in this world,
-            I am grateful that I found you. 💕
+            Out of all the people in this world, I'm grateful that I found you.
+            You are my favorite hello and my hardest goodbye. 🥰
         </p>
 
         <br>
 
         <h2>
             Forever Yours,<br>
-            Ronaldo 🥰
+            Ronaldo ❤️
         </h2>
     </div>
 
@@ -234,12 +270,16 @@ button:hover{
 <script>
 function nextPage(){
     document.body.style.backgroundImage = "url('photo2.jpg')";
+    document.body.style.backgroundPosition = "center top";
+
     document.getElementById("page1").classList.add("hidden");
     document.getElementById("page2").classList.remove("hidden");
 }
 
 function showLove(){
     document.body.style.backgroundImage = "url('photo3.jpg')";
+    document.body.style.backgroundPosition = "center top";
+
     document.getElementById("page2").classList.add("hidden");
     document.getElementById("page3").classList.remove("hidden");
 }
@@ -254,8 +294,8 @@ function moveButton(event){
     const maxX = card.clientWidth - noBtn.offsetWidth - 20;
     const maxY = card.clientHeight - noBtn.offsetHeight - 20;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const x = Math.max(10, Math.random() * maxX);
+    const y = Math.max(10, Math.random() * maxY);
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
@@ -265,12 +305,12 @@ noBtn.addEventListener("mouseenter", moveButton);
 noBtn.addEventListener("click", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
 
-for(let i=0;i<30;i++){
+for(let i=0;i<22;i++){
     let heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "💖";
     heart.style.left = Math.random()*100 + "%";
-    heart.style.fontSize = (12 + Math.random()*20) + "px";
+    heart.style.fontSize = (12 + Math.random()*18) + "px";
     heart.style.animationDuration = (5 + Math.random()*5) + "s";
     document.body.appendChild(heart);
 }
